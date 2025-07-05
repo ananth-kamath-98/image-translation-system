@@ -1,0 +1,59 @@
+**/__pycache__/
+
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+.ENV/
+
+# VSCode settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDE-specific
+*.iml
+
+# VSCode extensions and workspace storage
+.vscode/
+
+# Optional: local dotenv
+.env
+.env.*
+
