@@ -15,11 +15,17 @@ def callback():
     code = request.args.get('code')
     if not code:
         return 'Missing code', 400
+
+    # Exchange the code for tokens
     tokens = exchange_code(code)
     id_token = tokens.get('id_token')
     if not id_token:
         return 'No id_token returned', 400
     claims = verify_token(id_token)
+
+    # On first login, write user profile to user_profile table in database
+
+
     response = make_response(redirect('/dashboard'))
     response.set_cookie('id_token', id_token, httponly=True, secure=True)
     return response

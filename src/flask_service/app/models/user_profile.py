@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app.resources import dynamodb
 
 
@@ -17,3 +19,17 @@ class UserProfileModel:
         """
         response = self.table.get_item(Key={'user_id': user_id})
         return response.get('Item', {})
+
+    def upsert_profile(self, user_id: str, email: str, created_at: str):
+        try:
+            self.table.put_item(
+                Item={
+                    "user_id": user_id,
+                    "email": email,
+                    "created_at": created_at,
+                    "preferences": {}
+                },
+                ConditionExpression="attribute_not_exists(user_id)"
+            )
+        except dynamodb.meta.client.exceptions.ConditionalCheckFailedException:
+            pass
