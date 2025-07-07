@@ -1,5 +1,6 @@
-import requests
 import time
+
+import requests
 from flask import current_app
 from jose import jwt, jwk
 from jose.utils import base64url_decode
@@ -18,6 +19,23 @@ def get_auth_url():
         f"&client_id={client_id}"
         f"&redirect_uri={redirect_uri}"
         f"&scope=openid+email+profile"
+    )
+
+
+def get_logout_url():
+    """
+    Constructs the URL to enable user logout.
+    :return:
+    """
+    domain = current_app.config['COGNITO_DOMAIN']
+    client_id = current_app.config['COGNITO_CLIENT_ID']
+    logout_uri = current_app.config.get('POST_LOGOUT_REDIRECT_URI') \
+                 or current_app.config['REDIRECT_URI'].rsplit('/', 1)[0]
+
+    return (
+        f"https://{domain}/logout"
+        f"?client_id={client_id}"
+        f"&logout_uri={logout_uri}"
     )
 
 
