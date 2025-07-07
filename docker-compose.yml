@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - src/flask_service/.env
+    restart: on-failure
