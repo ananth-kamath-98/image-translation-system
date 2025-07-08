@@ -25,7 +25,13 @@ def callback():
 
     # On first login, write user profile to user_profile table in database
 
-
     response = make_response(redirect('/dashboard'))
     response.set_cookie('id_token', id_token, httponly=True, secure=True)
+    return response
+
+
+@main.route('/logout')
+def logout():
+    response = make_response(redirect(get_auth_url()))
+    response.delete_cookie('id_token', path='/', httponly=True)
     return response
