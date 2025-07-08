@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, request, make_response
 
-from ..auth import get_auth_url, exchange_code, verify_token
+from ..auth import get_auth_url, exchange_code, verify_token, get_logout_url
 
 main = Blueprint('main', __name__)
 
@@ -32,6 +32,6 @@ def callback():
 
 @main.route('/logout')
 def logout():
-    response = make_response(redirect(get_auth_url()))
+    response = make_response(redirect(get_logout_url()))
     response.delete_cookie('id_token', path='/', httponly=True)
     return response
