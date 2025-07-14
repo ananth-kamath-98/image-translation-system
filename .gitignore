@@ -57,3 +57,11 @@ coverage.xml
 .env
 .env.*
 
+# Terraform generated files and directories
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+crash.log
+.terraformrc
+terraform.rc
